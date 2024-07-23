@@ -1,106 +1,123 @@
-function createProductCard() {
+function createProductCard(_name, _price, _img, _desc, _sale_price) {
+  // Create the card div
   const card = document.createElement("div");
   card.style.display = "inline-block";
-  card.style.width = "250px";
-  card.style.height = "350px";
-  card.style.border = "1px solid #ddd";
-  card.style.borderRadius = "5px";
-  card.style.padding = "10px";
-  card.style.margin = "10px";
+  card.style.backgroundColor = "#dae0eb";
+  card.classList.add("card");
+  card.style.margin = "15px";
+  card.style.height = "480px";
+  card.style.width = "300px";
 
-  card.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.1)";
+  // Create the best seller badge
+  const bestSellerBadge = document.createElement("div");
+  bestSellerBadge.classList.add("best-seller-badge");
+  bestSellerBadge.textContent = "Best Seller";
+  card.appendChild(bestSellerBadge);
 
-  const image = document.createElement("img");
-  image.src = "../img/images.jfif";
-  image.style.width = "100%";
-  image.style.height = "200px";
-  image.style.objectFit = "cover";
-  image.style.borderRadius = "5px";
+  // Create the product image
+  const productImage = document.createElement("img");
+  productImage.src = `${_img}`;
+  productImage.classList.add("product-image");
+  card.appendChild(productImage);
 
-  const title = document.createElement("h3");
-  title.textContent = "AL DOHA Egyptian White Rice 1kg";
-  title.style.marginTop = "10px";
-  title.style.fontWeight = "bold";
+  // Create the product title
+  const productTitle = document.createElement("h3");
+  productTitle.classList.add("product-title");
+  productTitle.textContent = `${_name}`;
+  card.appendChild(productTitle);
 
+  // Create the rating div
+  const rating = document.createElement("div");
+  rating.classList.add("rating");
+
+  const ratingIcon = document.createElement("i");
+  ratingIcon.classList.add("fas", "fa-star", "rating-icon");
+  rating.appendChild(ratingIcon);
+
+  const ratingText = document.createElement("span");
+  ratingText.classList.add("rating-text");
+  ratingText.textContent = _desc;
+  rating.appendChild(ratingText);
+
+  card.appendChild(rating);
+
+  // Create the price paragraph
   const price = document.createElement("p");
-  price.textContent = "EGP 35.25";
-  price.style.fontSize = "18px";
-  price.style.color = "green";
+  price.classList.add("price");
+
+  const priceText = document.createTextNode(_sale_price);
+  price.appendChild(priceText);
 
   const oldPrice = document.createElement("span");
-  oldPrice.textContent = "49.95";
-  oldPrice.style.textDecoration = "line-through";
-  oldPrice.style.color = "#888";
-  oldPrice.style.fontSize = "14px";
+  oldPrice.classList.add("old-price");
+  oldPrice.textContent = _price;
+  price.appendChild(oldPrice);
 
   const discount = document.createElement("span");
-  discount.textContent = " 29% OFF";
-  discount.style.color = "green";
-  discount.style.fontSize = "14px";
+  discount.classList.add("discount");
+  discount.textContent = "29% OFF";
+  price.appendChild(discount);
 
+  card.appendChild(price);
+
+  // Create the delivery paragraph
   const delivery = document.createElement("p");
+  delivery.classList.add("delivery");
   delivery.textContent = "Free Delivery";
-  delivery.style.fontSize = "14px";
-  delivery.style.color = "#888";
+  card.appendChild(delivery);
 
+  // Create the express div
   const express = document.createElement("div");
-  express.style.backgroundColor = "#fff";
-  express.style.border = "1px solid #ddd";
-  express.style.padding = "5px 10px";
-  express.style.borderRadius = "5px";
-  express.style.marginTop = "10px";
-  express.style.display = "flex";
-  express.style.alignItems = "center";
+  express.classList.add("express");
 
   const expressIcon = document.createElement("img");
   expressIcon.src = "https://i.imgur.com/uO7j4t2.png";
-  expressIcon.style.width = "20px";
-  expressIcon.style.height = "20px";
-  expressIcon.style.marginRight = "5px";
-  //   expressIcon.style.marginBottom = "30px";
+  expressIcon.classList.add("express-icon");
+  express.appendChild(expressIcon);
 
   const expressText = document.createElement("span");
+  expressText.classList.add("express-text");
   expressText.textContent = "Get it by 20 July";
-
-  express.appendChild(expressIcon);
   express.appendChild(expressText);
 
-  price.appendChild(oldPrice);
-  price.appendChild(discount);
-
-  const favoriteIcon = document.createElement("i");
-  favoriteIcon.className = "fas fa-heart";
-  favoriteIcon.style.fontSize = "18px";
-  favoriteIcon.style.color = "#888";
-  favoriteIcon.style.cursor = "pointer";
-
-  const cartButton = document.createElement("button");
-  cartButton.textContent = "Add to Cart";
-  cartButton.style.backgroundColor = "#337ab7";
-  cartButton.style.color = "#fff";
-  cartButton.style.border = "none";
-  cartButton.style.padding = "10px 20px";
-  cartButton.style.borderRadius = "5px";
-  cartButton.style.cursor = "pointer";
-
-  cartButton.addEventListener("click", () => {
-    // Add to cart logic here
-    console.log("Added to cart!");
-  });
-
-  card.appendChild(image);
-  card.appendChild(title);
-  card.appendChild(price);
-  card.appendChild(delivery);
   card.appendChild(express);
+
+  // Create the favorite icon
+  const favoriteIcon = document.createElement("i");
+  favoriteIcon.classList.add("fas", "fa-heart", "favorite-icon");
   card.appendChild(favoriteIcon);
+
+  // Create the add to cart button
+  const cartButton = document.createElement("button");
+  cartButton.classList.add("cart-button");
+  cartButton.textContent = "Add to Cart";
   card.appendChild(cartButton);
 
+  // Append the card to the body or any other container
   document.body.appendChild(card);
 }
-createProductCard();
-createProductCard();
-createProductCard();
-createProductCard();
-createProductCard();
-createProductCard();
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", "../apis/api.json");
+xmlhttp.send();
+
+xmlhttp.onreadystatechange = function () {
+  console.log(xmlhttp.readyState);
+  console.log(xmlhttp.status);
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    var response = JSON.parse(xmlhttp.response).phones;
+    // console.log(response.phones); // print response
+    // console.log(response.phones.length);
+
+    for (var i = 0; i < response.length; i++) {
+      createProductCard(
+        response[i]["brand"],
+        response[i]["price"],
+        response[i]["image_key"],
+        response[i]["name"],
+        response[i]["sale_price"]
+      );
+      console.log(response[i]["brand"]);
+    }
+  }
+};
