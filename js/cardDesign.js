@@ -5,11 +5,16 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   card.style.backgroundColor = "#dae0eb";
   card.classList.add("card");
   card.style.margin = "15px";
-  card.style.height = "480px";
-  card.style.width = "300px";
+  card.style.padding = "15px";
+
+  card.style.height = "600px";
+  card.style.width = "350px";
 
   // Create the best seller badge
   const bestSellerBadge = document.createElement("div");
+  bestSellerBadge.style.width = "300px";
+  // bestSellerBadge.style.display = "inline-block";
+  bestSellerBadge.style.backgroundColor = "green";
   bestSellerBadge.classList.add("best-seller-badge");
   bestSellerBadge.textContent = "Best Seller";
   card.appendChild(bestSellerBadge);
@@ -17,6 +22,8 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   // Create the product image
   const productImage = document.createElement("img");
   productImage.src = `${_img}`;
+  productImage.style.width = "300px";
+  productImage.style.height = "300px";
   productImage.classList.add("product-image");
   card.appendChild(productImage);
 
@@ -24,6 +31,7 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   const productTitle = document.createElement("h3");
   productTitle.classList.add("product-title");
   productTitle.textContent = `${_name}`;
+
   card.appendChild(productTitle);
 
   // Create the rating div
@@ -37,6 +45,12 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   const ratingText = document.createElement("span");
   ratingText.classList.add("rating-text");
   ratingText.textContent = _desc;
+  // ratingText.style.overflow = "hidden";
+  // ratingText.style.maxWidth = "50px";
+  // // ratingText.style.maxHeight = "50px";
+  // ratingText.style.whiteSpace= "nowrap"
+  // ratingText.style.textOverflow = "ellipsis";
+
   rating.appendChild(ratingText);
 
   card.appendChild(rating);
@@ -44,6 +58,7 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   // Create the price paragraph
   const price = document.createElement("p");
   price.classList.add("price");
+  price.style.fontSize = "25px";
 
   const priceText = document.createTextNode(_sale_price);
   price.appendChild(priceText);
@@ -89,6 +104,10 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
 
   // Create the add to cart button
   const cartButton = document.createElement("button");
+  cartButton.style.width = "300px";
+  cartButton.style.height = "30px";
+  cartButton.style.backgroundColor = "green";
+  cartButton.style.display = "inline";
   cartButton.classList.add("cart-button");
   cartButton.textContent = "Add to Cart";
   card.appendChild(cartButton);
