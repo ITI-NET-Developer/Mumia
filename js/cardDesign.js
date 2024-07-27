@@ -1,14 +1,22 @@
 function createProductCard(_name, _price, _img, _desc, _sale_price) {
+  var mainn = document.getElementById("homemain");
   // Create the card div
   const card = document.createElement("div");
   card.style.display = "inline-block";
   card.style.backgroundColor = "#dae0eb";
   card.classList.add("card");
+  // <<<<<<< HEAD
+  // card.style.margin = "15px";
+  card.style.height = "480px";
+  card.style.width = "300px";
+  card.style.position = "static";
+  // =======
   card.style.margin = "15px";
   card.style.padding = "15px";
 
   card.style.height = "600px";
   card.style.width = "350px";
+  // >>>>>>> 21e7757f86804da6a42a96d94d6d49baf849b190
 
   // Create the best seller badge
   const bestSellerBadge = document.createElement("div");
@@ -113,7 +121,7 @@ function createProductCard(_name, _price, _img, _desc, _sale_price) {
   card.appendChild(cartButton);
 
   // Append the card to the body or any other container
-  document.body.appendChild(card);
+  mainn.appendChild(card);
 }
 
 var xmlhttp = new XMLHttpRequest();
