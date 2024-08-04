@@ -1,14 +1,14 @@
 var foter = document.getElementById("Foooter");
-foter.innerHTML=`<div class="one">
+foter.innerHTML = `<div class="one">
         <div class="container">
           <div class="row">
             <div class="col-sm-2 p-3 mx-sm-auto white one-0">
               <span>MUMIA</span>
               <img
-          src="../img/mummy.png"
-          alt=""
-          width="25px"
-          height="25px"
+          src="../img/mumia.png"
+          alt="Logo"
+          width="35px"
+          height="35px"
 
         />
             </div>
@@ -259,4 +259,4 @@ foter.innerHTML=`<div class="one">
           </div>
         </div>
       </section>
-`
+`;
