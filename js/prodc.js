@@ -10,11 +10,11 @@ function calculatePercentageDiscount(originalPrice, discountedPrice) {
 }
 
 var contener = document.createElement("section");
-contener.style.display = "flex";
-contener.style.width = "95%";
-contener.style.marginBlock = "10px";
-contener.style.marginInline = "60px";
-contener.style.paddingInline = "25px";
+// contener.style.display = "flex";
+// contener.style.width = "95%";
+// contener.style.marginBlock = "10px";
+contener.style.margin = "0 35px";
+// contener.style.paddingInline = "25px";
 // contener.style.backgroundColor = "lightgray"
 // contener.style.backgroundColor = "#fbd290"
 contener.style.display = "inline-block";
@@ -57,10 +57,9 @@ function createProductCard(
   card.style.paddingInline = "10px";
   card.style.marginBlock = "15px";
   // card.style.height = "600px";
-  // card.style.height = "max-content";
-  card.style.width = "300px";
+
   card.style.border = "1px solid gray";
-  card.style.borderRadius = "10px";
+  card.style.borderRadius = "15px";
 
   card.onclick = function () {
     // alert(product.id + " added to cart");
@@ -80,8 +79,8 @@ function createProductCard(
   // Create the product image
   var productImage = document.createElement("img");
   productImage.src = `${_img}`;
-  productImage.style.width = "80%";
-  productImage.style.height = "300px";
+  productImage.style.width = "70%";
+  productImage.style.height = "250px";
   productImage.style.marginInline = "40px";
   productImage.style.mixBlendMode = "multiply";
   productImage.classList.add("product-image");
@@ -100,13 +99,16 @@ function createProductCard(
   var rating = document.createElement("div");
   // rating.classList.add("rating");
   rating.className = "rating";
+  rating.style.maxHeight = "55px";
+  rating.style.overflow = "hidden";
 
-  var ratingText = document.createElement("span");
+  var ratingText = document.createElement("P");
   // ratingText.classList.add("rating-text");
   ratingText.className = "rating-text";
   ratingText.textContent = _desc;
   ratingText.style.fontFamily = "Arial, Helvetica, sans-serif";
   ratingText.style.fontSize = "17px";
+
   rating.appendChild(ratingText);
 
   // var ratingIcon = document.createElement("i");
@@ -120,7 +122,6 @@ function createProductCard(
   var price = document.createElement("p");
   // price.classList.add("price");
   price.className = "price";
-
   // var priceText = document.createTextNode(_sale_price);
   // console.log(typeof( _sale_price));
   // price.appendChild(priceText);
@@ -181,6 +182,7 @@ function createProductCard(
   // cartButton.classList.add("cart-button");
   // cartButton.className="cart-button";
   cartButton.setAttribute("id", "cart1");
+  cartButton.style.transition = "1s linear";
   cartButton.textContent = "Add to Cart";
   cartButton.style.fontSize = "25px";
   cartButton.style.width = "99%";
@@ -211,6 +213,7 @@ function createProductCard(
     }
     // window.location = './Cart.html';
     var crtnum = document.getElementById("cart-number");
+    crtnum.style.marginLeft = "4px";
     crtnum.innerHTML = `${cont}`;
     localStorage.setItem("prodectarr", JSON.stringify(cartcontent));
   };
@@ -224,13 +227,13 @@ function createProductCard(
   card.onmousemove = function () {
     SendProductDataToPoduct_details_page("new", "new", "new");
     card.style.boxShadow = "5px 5px 5px gray";
-    card.style.transform = "scale(1.01)";
-    card.style.transition = "transform 0.7s ease, box-shadow 0.3s ease";
 
     cartButton.style.display = "block";
   };
   card.onmouseleave = function () {
     card.style.boxShadow = "none";
+    card.style.transition = "0.5s linear";
+
     card.style.transform = "scale(1)";
     card.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
     cartButton.style.display = "none";
@@ -239,7 +242,7 @@ function createProductCard(
     for (let i = 0; i < 44; i++) {
       if (code == cartcontent[i].offercode) {
         y = cartcontent[i].offercode;
-        //  console.log( cartcontent[i+1].count_of_prodct);
+        //  console.log( cartcontent[i+1].count_of_prodct); transition
         cartcontent[i].count_of_prodct = ++x;
         // console.log(x);
       }
