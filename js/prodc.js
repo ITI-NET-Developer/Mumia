@@ -48,6 +48,7 @@ function createProductCard(
   // Create the card div
   var card = document.createElement("div");
   card.style.display = "inline-block";
+  // card.style.margin = "30px";
   // card.style.display = "flex";
   // card.style.backgroundColor = "#dae0eb";
   // card.classList.add("card");
@@ -56,8 +57,8 @@ function createProductCard(
   card.style.paddingInline = "10px";
   card.style.marginBlock = "15px";
   // card.style.height = "600px";
-  card.style.height = "max-content";
-  card.style.width = "23%";
+  // card.style.height = "max-content";
+  card.style.width = "300px";
   card.style.border = "1px solid gray";
   card.style.borderRadius = "10px";
 
@@ -65,7 +66,7 @@ function createProductCard(
     // alert(product.id + " added to cart");
     // var items = JSON.parse(localStorage.getItem("product"));
     console.log(JSON.stringify(obj));
-    var x = JSON.stringify(obj); 
+    var x = JSON.stringify(obj);
     console.log("HERE");
     localStorage.setItem(`singleproduct`, x);
   };
@@ -192,7 +193,9 @@ function createProductCard(
   card.appendChild(cartButton);
   // card.innerHTML+=`<br>`
   // Append the card to the body or any other container
+  var allproducts = document.getElementById("allproducts");
   contener.appendChild(card);
+  allproducts.appendChild(contener);
 
   var x, y;
   cartButton.onclick = function () {
@@ -221,12 +224,15 @@ function createProductCard(
   card.onmousemove = function () {
     SendProductDataToPoduct_details_page("new", "new", "new");
     card.style.boxShadow = "5px 5px 5px gray";
-    card.style.transform = "scale(1.05)";
+    card.style.transform = "scale(1.01)";
+    card.style.transition = "transform 0.7s ease, box-shadow 0.3s ease";
+
     cartButton.style.display = "block";
   };
   card.onmouseleave = function () {
     card.style.boxShadow = "none";
     card.style.transform = "scale(1)";
+    card.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
     cartButton.style.display = "none";
   };
   productImage.onclick = function () {
