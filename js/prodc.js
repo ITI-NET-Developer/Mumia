@@ -122,7 +122,6 @@ function createProductCard(
   var price = document.createElement("p");
   // price.classList.add("price");
   price.className = "price";
-
   // var priceText = document.createTextNode(_sale_price);
   // console.log(typeof( _sale_price));
   // price.appendChild(priceText);
@@ -212,6 +211,7 @@ function createProductCard(
     }
     // window.location = './Cart.html';
     var crtnum = document.getElementById("cart-number");
+    crtnum.style.marginLeft = "4px";
     crtnum.innerHTML = `${cont}`;
     localStorage.setItem("prodectarr", JSON.stringify(cartcontent));
   };
